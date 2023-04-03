@@ -7,7 +7,7 @@ from helpers import generate_id, is_unique_phone
 layout = [
     [sg.Text('Генератор уникального ID для конкурса')],
     [sg.Text('Код:'), sg.Text(key='-OUTPUT-')],
-    [sg.Text('Введите номер гостя: '), sg.Input(key='-IN-', enable_events=True, size=11)],
+    [sg.Text('Введите номер телефона гостя: '), sg.Input(key='-IN-', enable_events=True, size=11)],
     [sg.Text('', font=('italic', 11),key='-OK-')],
     [sg.Button('Сгенерировать', enable_events=True), sg.Button('Сохранить')],
     ]
