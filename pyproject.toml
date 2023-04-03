@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "probka"
+version = "0.1.0"
+description = ""
+authors = ["zcmn <zhecaman@icloud.com>"]
+packages = [
+    { include = 'apps'}
+    ]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+PySimpleGUI = "^4.60.4"
+openpyxl = "^3.1.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
