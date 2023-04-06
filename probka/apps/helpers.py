@@ -1,19 +1,19 @@
-import random
+import re, random
 
 
-def generate_id(data):
-    id = ''
-    symbols = '1234567890'
-    for i in range(6):
-        id += random.choice(symbols)
-    for cell in data:
-        if cell.value == id:
-            generate_id(data)
-    return id
 
-def is_unique_phone(data, phone):
-    for cell in data:
-        if cell.value ==  phone:
-            return False   
+
+def validate_phone(text):
+    regex = '^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$'
+    result = re.match(regex, text)
+    return False if result is None or result.group() != text else True
+
+def generate_idcode():
+        '''Generate an id for user'''
+        id_code = ''
+        symbols = '1234567890'
+        for i in range(6):
+            id_code += random.choice(symbols)
         
-    return True
+        return id_code
+        
