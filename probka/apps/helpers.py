@@ -6,7 +6,7 @@ import re, random
 def validate_phone(text):
     regex = '^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$'
     result = re.match(regex, text)
-    return False if result is None or result.group() != text else True
+    return False if result is None or result.group() != text or len(text) < 11 else True
 
 def generate_idcode():
         '''Generate an id for user'''

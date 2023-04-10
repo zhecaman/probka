@@ -1,6 +1,7 @@
 import PySimpleGUI as sg
 from helpers import validate_phone, generate_idcode
 from db import BotDB
+import time
 
 
 layout = [
@@ -24,15 +25,16 @@ while True:
         window['-OK-'].Update('')
         id_code = generate_idcode()
         phone_num = window['-IN-'].get()
+        time.sleep(0.3)
         window['-OUTPUT-'].Update(value=id_code)
         window['-SAVE-'].Update(disabled=False)
         try:
-            if not phone_num:
-                sg.popup_error('Введите номер телефона')
             if validate_phone(phone_num):
 
                 if database.user_exists(phone_num):
                     sg.popup_error('Этот номер уже учавствует в розыгрыше!')
+                    window['-IN-'].Update('')
+                    window['-OUTPUT-'].Update('')
                 database.add_phone_and_code(phone_num, id_code)
             else:
                 sg.popup_error('Это не похоже на номер телефона.')
@@ -42,10 +44,13 @@ while True:
 
     if event == '-SAVE-':
         try:
-            window['-OK-'].Update('Запись добавлена в таблицу')
+            if phone_num:
+                window['-OK-'].Update('Запись добавлена в таблицу')
             
-            window['-OUTPUT-'].Update('')
-            window['-IN-'].Update('')
+                window['-OUTPUT-'].Update('')
+                window['-IN-'].Update('')
+            else:
+                window['-OK-'].Update('Невозможно добавить запись. Вы не ввели номер телефона.')
         except Exception as e:
             sg.popup_error(f'Возникла ошибка: {e}')
 database.close()
