@@ -3,9 +3,7 @@ name = "probka"
 version = "0.1.0"
 description = ""
 authors = ["zcmn <zhecaman@icloud.com>"]
-packages = [
-    { include = 'apps'}
-    ]
+
 
 [tool.poetry.dependencies]
 python = "^3.10"

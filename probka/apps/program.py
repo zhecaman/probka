@@ -14,7 +14,7 @@ layout = [
 
             
 window = sg.Window('PROBKA', layout)
-database = BotDB('/mnt/c/Users/Yevhenii/Documents/probka.db')
+database = BotDB('/mnt/c/Users/kazak/YandexDisk/Загрузки/probka.db')
 
 
 while True:
@@ -35,7 +35,7 @@ while True:
                     sg.popup_error('Этот номер уже учавствует в розыгрыше!')
                     window['-IN-'].Update('')
                     window['-OUTPUT-'].Update('')
-                database.add_phone_and_code(phone_num, id_code)
+                database.add_phone_and_code(f'7{phone_num[1:]}', id_code)
             else:
                 sg.popup_error('Это не похоже на номер телефона.')
             
@@ -53,5 +53,6 @@ while True:
                 window['-OK-'].Update('Невозможно добавить запись. Вы не ввели номер телефона.')
         except Exception as e:
             sg.popup_error(f'Возникла ошибка: {e}')
-database.close()
+        window['-SAVE-'].Update(disabled=True)
+        database.close()
 window.close()
