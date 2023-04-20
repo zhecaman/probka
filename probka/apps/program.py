@@ -14,10 +14,10 @@ layout = [
 
             
 window = sg.Window('PROBKA', layout)
-database = BotDB('/mnt/c/Users/kazak/YandexDisk/Загрузки/probka.db')
 
 
 while True:
+    database = BotDB('probka.db')
     event, values = window.read()
     if event in (sg.WINDOW_CLOSED, None):
         break
@@ -31,7 +31,7 @@ while True:
         try:
             if validate_phone(phone_num):
 
-                if database.user_exists(phone_num):
+                if database.user_exists_phone(phone_num):
                     sg.popup_error('Этот номер уже учавствует в розыгрыше!')
                     window['-IN-'].Update('')
                     window['-OUTPUT-'].Update('')
